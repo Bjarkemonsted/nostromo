@@ -13,7 +13,7 @@ To get started, create a virtual environment. Make sure you have virtualenv inst
 virtualenv --version
 ```
 
-Install Django and create the basicss, including superuser. Dont be that guy, remember your superuserpassword ¯\_(ツ)_/¯.
+Install Django and create the basics, including superuser. Dont be that guy, remember your superuserpassword ¯\_(ツ)_/¯.
 Django 4.2 for LTS.
 
 
@@ -21,8 +21,9 @@ Django 4.2 for LTS.
 virtualenv nostromo -p python3
 cd nostromo
 source bin/activate
-pip install Django==4.2
+pip install Django==4.2  # Using the LTS version for long-term stability
 django-admin startproject nostromo .
+mkdir apps
 cd nostromo
 python manage.py migrate
 python manage.py createsuperuser
@@ -40,7 +41,20 @@ Go to: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 ## Create Application onedrivesharepoint
 
 ```sh
+cd ..  # Back to the project root
+cd apps
 django-admin startapp onedrivesharepoint
+mv onedrivesharepoint ../apps/
+```
+
+## Update `settings.py`
+### Add the following to your `INSTALLED_APPS`:
+
+```
+INSTALLED_APPS = [
+    # Other apps...
+    'apps.onedrivesharepoint',
+]
 ```
 
 ## onedrivesharepoint - Keep track of shared files/acces from onedrive and sharepoint.
